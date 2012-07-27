@@ -23,7 +23,7 @@ handle_info(timeout, State) ->
     {noreply, State}.
 
 process_data([Rank, Uri]) ->
-    io:format("Received URL: ~s~n", [Uri]),
+    io:format("Received URL: ~p - ~p~n", [Rank, Uri]),
     Url = "http://www." ++ erlang:binary_to_list(Uri),
     case httpc:request(Url) of
 	{ok, Response} ->
@@ -39,7 +39,6 @@ terminate(_Reason, _State) ->
     ok.
 
 write_to_file(Rank, Data) ->
-    io:format("Writing File~n", []),
     [Html|Rest] = lists:reverse(erlang:tuple_to_list(Data)),
     case search_for(Html) of
 	{ok, Str} ->
