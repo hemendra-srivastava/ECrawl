@@ -17,9 +17,9 @@ handle_cast({get_next, From}, State = #state{list=[H|Rest]}) ->
     {noreply, State#state{list=Rest}};
 handle_cast({get_next, From}, State= #state{list=[]}) ->
     gen_server:cast(From, done),
-    {noreply, State#state{list=[]}}.
+    {noreply, State#state{list=[]}};
 handle_cast(dying, State#state{nkids = 0}) ->
-    {stop, State}
+    {stop, State}.
 
 code_change(_OldVsn, State, _Extra) ->
     {ok, State}.
