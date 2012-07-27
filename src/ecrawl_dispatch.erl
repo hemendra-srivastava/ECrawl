@@ -20,7 +20,7 @@ handle_cast({get_next, From}, State= #state{list=[]}) ->
     {noreply, State#state{list=[]}};
 handle_cast(dying, State = #state{nkids = NKids}) ->
     io:format("Term~p~n", [NKids]),
-    {noreply, State#state{nkids=NKids+1}};
+    {noreply, State#state{nkids=NKids+1}}.
 
 code_change(_OldVsn, State, _Extra) ->
     {ok, State}.
