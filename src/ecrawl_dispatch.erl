@@ -4,19 +4,21 @@
 
 -behaviour(gen_server).
 
--record(state, {list, nkids=0}).
+-record(state, {list, nkids=0, starttime}).
 
 start_link() ->
     gen_server:start_link({local, ecrawl_dispatch}, ?MODULE, [], []).
 
 init(Args) ->
-    {ok, #state{}, 0}.
+    {ok, #state{starttime=calendar:now_to_datetime(now())}, 0}.
 
 handle_cast({get_next, From}, State = #state{list=[H|Rest]}) ->
     gen_server:cast(From, {reply, H}),
     {noreply, State#state{list=Rest}};
-handle_cast({get_next, From}, State= #state{list=[]}) ->
+handle_cast({get_next, From}, State= #state{list=[], starttime=StartT}) ->
     gen_server:cast(From, done),
+    T = calendar:now_to_datetime(now()),
+    io:format("~p~n", [calendar:time_difference(T-StartT)]),
     {noreply, State#state{list=[]}};
 handle_cast(dying, State = #state{nkids = NKids}) ->
     io:format("Term~p~n", [NKids]),
