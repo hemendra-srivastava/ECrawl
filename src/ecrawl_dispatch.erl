@@ -30,6 +30,6 @@ terminate(_Reason, _State) ->
     ok.
 
 handle_info(timeout, State) ->
-    {ok, Data} = file:read_file('priv/top-1k.csv'),
+    {ok, Data} = file:read_file('priv/top-1m.csv'),
     {noreply, State#state{list=re:split(Data, "\n")}}.
 
