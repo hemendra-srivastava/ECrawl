@@ -1,0 +1,12 @@
+{application, ecrawl,
+ [
+  {description, ""},
+  {vsn, "1"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, { ecrawl_app, []}},
+  {env, []}
+ ]}.

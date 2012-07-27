@@ -1,0 +1,9 @@
+{application,ecrawl,
+             [{description,[]},
+              {vsn,"1"},
+              {registered,[]},
+              {applications,[kernel,stdlib]},
+              {mod,{ecrawl_app,[]}},
+              {env,[]},
+              {modules,[ecrawl_app,ecrawl_crawl,ecrawl_crawl_sup,
+                        ecrawl_dispatch,ecrawl_sup]}]}.
