@@ -14,5 +14,6 @@ start(_StartType, _StartArgs) ->
     ecrawl_sup:start_link().
 
 stop(_State) ->
+    halt(0),
     ok.
 

@@ -14,12 +14,11 @@ handle_cast({reply, Url}, State) ->
     process_data(re:split(Url, ",")),
     {noreply, State, 0};
 handle_cast(done, State) ->
-    io:format("Terminating", []),
+    io:format("Terminating~n", []),
     gen_server:cast(ecrawl_dispatch, dying),
-    {stop, State}.
+    {stop, shutdown, State}.
 
 handle_info(timeout, State) ->
-    io:format("Sent Message~n", []),
     gen_server:cast(ecrawl_dispatch, {get_next, self()}),
     {noreply, State}.
 

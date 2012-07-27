@@ -4,7 +4,7 @@
 
 -behaviour(gen_server).
 
--record(state, {list, nkids=15}).
+-record(state, {list, nkids=0}).
 
 start_link() ->
     gen_server:start_link({local, ecrawl_dispatch}, ?MODULE, [], []).
@@ -19,9 +19,8 @@ handle_cast({get_next, From}, State= #state{list=[]}) ->
     gen_server:cast(From, done),
     {noreply, State#state{list=[]}};
 handle_cast(dying, State = #state{nkids = NKids}) ->
-    {noreply, State#state{nkids=NKids-1}};
-handle_cast(dying, State = #state{nkids = 0}) ->
-    {stop, State}.
+    io:format("Term~p~n", [NKids]),
+    {noreply, State#state{nkids=NKids+1}};
 
 code_change(_OldVsn, State, _Extra) ->
     {ok, State}.
