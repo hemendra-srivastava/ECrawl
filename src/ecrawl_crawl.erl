@@ -15,6 +15,7 @@ handle_cast({reply, Url}, State) ->
     {noreply, State, 0};
 handle_cast(done, State) ->
     io:format("Terminating", []),
+    gen_server:cast(ecrawl_dispatch, dying),
     {stop, State}.
 
 handle_info(timeout, State) ->

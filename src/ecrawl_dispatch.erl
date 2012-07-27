@@ -4,7 +4,7 @@
 
 -behaviour(gen_server).
 
--record(state, {list}).
+-record(state, {list, nkids=15}).
 
 start_link() ->
     gen_server:start_link({local, ecrawl_dispatch}, ?MODULE, [], []).
@@ -18,6 +18,14 @@ handle_cast({get_next, From}, State = #state{list=[H|Rest]}) ->
 handle_cast({get_next, From}, State= #state{list=[]}) ->
     gen_server:cast(From, done),
     {noreply, State#state{list=[]}}.
+handle_cast(dying, State#state{nkids = 0}) ->
+    {stop, State}
+
+code_change(_OldVsn, State, _Extra) ->
+    {ok, State}.
+
+terminate(_Reason, _State) ->
+    ok.
 
 handle_info(timeout, State) ->
     {ok, Data} = file:read_file('priv/top-1k.csv'),
