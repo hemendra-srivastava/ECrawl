@@ -33,7 +33,15 @@ init([]) ->
 			       {ecrawl_crawl5, {ecrawl_crawl, start_link, []}, permanent, 5000, worker, [ecrawl_crawl]},
 			       {ecrawl_crawl6, {ecrawl_crawl, start_link, []}, permanent, 5000, worker, [ecrawl_crawl]},
 			       {ecrawl_crawl7, {ecrawl_crawl, start_link, []}, permanent, 5000, worker, [ecrawl_crawl]},
-			       {ecrawl_crawl8, {ecrawl_crawl, start_link, []}, permanent, 5000, worker, [ecrawl_crawl]}
+			       {ecrawl_crawl8, {ecrawl_crawl, start_link, []}, permanent, 5000, worker, [ecrawl_crawl]},
+			       {ecrawl_crawl9, {ecrawl_crawl, start_link, []}, permanent, 5000, worker, [ecrawl_crawl]},
+			       {ecrawl_crawl10, {ecrawl_crawl, start_link, []}, permanent, 5000, worker, [ecrawl_crawl]},
+			       {ecrawl_crawl11, {ecrawl_crawl, start_link, []}, permanent, 5000, worker, [ecrawl_crawl]},
+			       {ecrawl_crawl12, {ecrawl_crawl, start_link, []}, permanent, 5000, worker, [ecrawl_crawl]},
+			       {ecrawl_crawl13, {ecrawl_crawl, start_link, []}, permanent, 5000, worker, [ecrawl_crawl]},
+			       {ecrawl_crawl14, {ecrawl_crawl, start_link, []}, permanent, 5000, worker, [ecrawl_crawl]},
+			       {ecrawl_crawl15, {ecrawl_crawl, start_link, []}, permanent, 5000, worker, [ecrawl_crawl]},
+			       {ecrawl_crawl16, {ecrawl_crawl, start_link, []}, permanent, 5000, worker, [ecrawl_crawl]}
 			     ]
      } 
     }.
