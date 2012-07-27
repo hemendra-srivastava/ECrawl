@@ -18,7 +18,7 @@ handle_cast({get_next, From}, State = #state{list=[H|Rest]}) ->
 handle_cast({get_next, From}, State= #state{list=[], starttime=StartT}) ->
     gen_server:cast(From, done),
     T = calendar:now_to_datetime(now()),
-    io:format("~p~n", [calendar:time_difference(T-StartT)]),
+    io:format("######################### TIMESTAMP ################ : ~p~n", [calendar:time_difference(T-StartT)]),
     {noreply, State#state{list=[]}};
 handle_cast(dying, State = #state{nkids = NKids}) ->
     io:format("Term~p~n", [NKids]),
