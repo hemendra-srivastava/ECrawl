@@ -32,5 +32,7 @@ terminate(_Reason, _State) ->
 
 handle_info(timeout, State) ->
     {ok, Data} = file:read_file('priv/top-1m.csv'),
-    {noreply, State#state{list=re:split(Data, "\n")}}.
+    Li = re:split(Data, "\n"),
+    io:format("Length: ~p~n", [erlang:length(Li)]),
+    {noreply, State#state{list=Li}}.
 

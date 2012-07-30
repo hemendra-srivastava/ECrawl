@@ -23,7 +23,7 @@ start_link() ->
 %% ===================================================================
 
 init([]) ->
-    {ok,{{one_for_one, 5, 10}, generate_childspec(50)}}.
+    {ok,{{one_for_one, 5, 10}, generate_childspec(30)}}.
 
 generate_childspec(No) ->
     Li = lists:seq(1, No, 1),
