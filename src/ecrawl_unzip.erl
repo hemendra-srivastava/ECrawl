@@ -3,7 +3,8 @@
 -export([unzip/0]).
 
 unzip() ->
-    Li = filelib:wildcard("priv/results/*"),
+    %% Li = filelib:wildcard("priv/results/1999*"),
+    Li = create_list(),
     F = fun(X) ->
 		{ok, Bin} = file:read_file(X),
 		[<<"priv">>, <<"results">>, FName] = re:split(X, "/"),
@@ -12,3 +13,6 @@ unzip() ->
 	end,
     lists:foreach(F, Li).
 		
+
+create_list() ->
+    lists:foldl(fun(X, Acc) -> filelib:wildcard("priv/results/"++erlang:integer_to_list(X)++"*"), [], lists:seq(2, 9, 1)).
