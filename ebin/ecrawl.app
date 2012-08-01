@@ -6,4 +6,4 @@
               {mod,{ecrawl_app,[]}},
               {env,[]},
               {modules,[ecrawl_app,ecrawl_crawl,ecrawl_crawl_sup,
-                        ecrawl_dispatch,ecrawl_sup]}]}.
+                        ecrawl_dispatch,ecrawl_sup,ecrawl_unzip]}]}.
